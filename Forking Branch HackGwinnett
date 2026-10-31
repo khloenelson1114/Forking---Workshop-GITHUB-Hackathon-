@@ -1,2 +1,43 @@
 # WorkshopExample
-SAMPLE COD
+SAMPLE CODE
+
+
+
+import ui
+
+
+def main():
+    print("Welcome to the Scientific where I'm sure if this even works !")
+
+    while True:
+        print(ui.MENU)
+        raw_choice = input("Choose an operation (0-12): ").strip()
+
+        if not raw_choice.isdigit():
+            print("Please enter a number from the menu.\n")
+            continue
+
+        choice = int(raw_choice)
+
+        if choice == 0:
+            print("Goodbye!")
+            break
+
+        if choice not in range(1, 13):
+            print("Invalid choice. Try again.\n")
+            continue
+
+        x = ui.get_number("Enter a number: ")
+        y = None
+        if choice not in ui.SINGLE_INPUT_OPS:
+            y = ui.get_number("Enter another number: ")
+
+        try:
+            result = ui.run_operation(choice, x, y)
+            print(f"\nResult: {result}\n")
+        except ValueError as e:
+            print(f"\nError: {e}\n")
+
+
+if __name__ == "__main__":
+    main()
